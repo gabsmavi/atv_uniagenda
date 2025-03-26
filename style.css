@@ -1,0 +1,418 @@
+/* =============== VARIÁVEIS GLOBAIS =============== */
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --danger: #f72585;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  /* =============== RESET E ESTILOS BASE =============== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilo para a imagem no canto esquerdo */
+  .corner-image {
+    position: fixed;
+    left: 0px;
+    top: 15px;
+    width: 300px; /* Ajuste conforme necessário */
+    height: auto;
+    z-index: 1000;
+}
+
+/* Ajuste para o header não ficar escondido atrás da imagem */
+header {
+    padding-left: 120px; /* Deve ser maior que a largura da imagem */
+}
+
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+  }
+  
+  /* =============== LAYOUT PRINCIPAL =============== */
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  /* =============== HEADER =============== */
+  header {
+    background-color: var(--primary);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: white;
+  }
+  
+  .subtitle {
+    font-weight: 400;
+    opacity: 0.9;
+    font-size: 1.1rem;
+  }
+  
+  /* =============== NAVBAR =============== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary);
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-card a {
+    text-decoration: none;
+  }
+  
+  .nav-container {
+    display: flex;
+    gap: 1rem;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .nav-btn {
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .nav-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  /* =============== NAV CARDS (PÁGINA INICIAL) =============== */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .nav-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    text-align: center;
+  }
+  
+  .nav-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 2.5rem 1.5rem;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  
+  .nav-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+  }
+  
+  .nav-card:hover .nav-icon {
+    transform: scale(1.1);
+  }
+  
+  .nav-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+  
+  .nav-desc {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* =============== TABELA (PÁGINA LISTA) =============== */
+  .table-container {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin-top: 2rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  
+  th {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+  }
+  
+  /* =============== PÁGINA DE REMOÇÃO =============== */
+  .search-container {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-form {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    gap: 0.5rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  .btn-danger {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d00000;
+    transform: translateY(-2px);
+  }
+  
+  .results-container {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+  }
+  
+  .contact-card {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    transition: var(--transition);
+  }
+  
+  .contact-card:hover {
+    background-color: rgba(247, 37, 133, 0.05);
+  }
+  
+  .contact-card:last-child {
+    border-bottom: none;
+  }
+  
+  .contact-info {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-info p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-id {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: monospace;
+  }
+  
+  /* =============== MENSAGENS DE ESTADO =============== */
+  .no-contacts,
+  .loading-message, 
+  .error-message, 
+  .no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+  
+  .no-contacts i,
+  .loading-message i, 
+  .no-results i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ddd;
+  }
+  
+  .error-message {
+    color: var(--danger);
+  }
+  
+  /* =============== FOOTER =============== */
+  footer {
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    margin-top: auto;
+  }
+  
+  footer p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+  
+  /* =============== ANIMAÇÕES =============== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .nav-card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .nav-card:nth-child(1) { animation-delay: 0.1s; }
+  .nav-card:nth-child(2) { animation-delay: 0.2s; }
+  .nav-card:nth-child(3) { animation-delay: 0.3s; }
+  
+  /* =============== RESPONSIVIDADE =============== */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 70px;
+    }
+    
+    header {
+      padding: 2rem 1rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .nav-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .nav-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      padding: 2rem 1rem;
+    }
+    
+    .container {
+      padding: 0 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+    }
+    
+    .nav-title {
+      font-size: 1.3rem;
+    }
+  }
