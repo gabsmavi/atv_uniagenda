@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Feito por: Ronaldo Teles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniAgenda</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Parse SDK -->
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Imagem no canto esquerdo -->
+    <img src="imagens/UNIFOR_Marca_RGB-08.png" alt="Logo" class="corner-image">
+    <header>
+        <h1><i class="fas fa-address-book"></i> UniAgenda</h1>
+        <p class="subtitle">Gerencie seus contatos de forma simples e eficiente</p>
+    </header>
+    <main>
+        <div class="nav-grid">
+            <a href="add.html" class="nav-card">
+                <div class="nav-link">
+                    <div class="nav-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2 class="nav-title">Adicionar Contato</h2>
+                    <p class="nav-desc">Cadastre novos contatos na sua agenda</p>
+                </div>
+            </a>
+            
+            <a href="list.html" class="nav-card">
+                <div class="nav-link">
+                    <div class="nav-icon">
+                        <i class="fas fa-list-ul"></i>
+                    </div>
+                    <h2 class="nav-title">Listar Contatos</h2>
+                    <p class="nav-desc">Visualize todos os seus contatos cadastrados</p>
+                </div>
+            </a>
+            
+            <a href="delete.html" class="nav-card">
+                <div class="nav-link">
+                    <div class="nav-icon">
+                        <i class="fas fa-user-minus"></i>
+                    </div>
+                    <h2 class="nav-title">Remover Contato</h2>
+                    <p class="nav-desc">Remova contatos da sua agenda</p>
+                </div>
+            </a>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2023 UniAgenda | Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

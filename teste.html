@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Back4App</title>
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+</head>
+<body>
+    <script>
+        Parse.initialize('MCU8RwP2QH3TCxcAZss2dpLgNgrLs5JAhz5xpCUr', 'l6bME5hu692HoAFtvhYcY5dFeR4WhlejV7ATBbn4');
+        Parse.serverURL = 'https://parseapi.back4app.com/';
+
+        async function testarBack4App() {
+            const Contato = Parse.Object.extend('Contato');
+            const teste = new Contato();
+            
+            teste.set('nome', 'Teste Debug');
+            teste.set('telefone', '11999999999');
+            
+            try {
+                await teste.save();
+                alert("Contato salvo com sucesso! Verifique no dashboard do Back4App.");
+            } catch (error) {
+                alert("ERRO: " + error.message);
+                console.error(error);
+            }
+        }
+
+        testarBack4App();
+    </script>
+</body>
+</html>

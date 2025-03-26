@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Feito por: Vitor Eduardo -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contatos | Agenda</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Parse SDK -->
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i> Início
+            </a>
+            <a href="add.html" class="nav-btn">
+                <i class="fas fa-plus"></i> Novo
+            </a>
+            <a href="delete.html" class="nav-btn">
+                <i class="fas fa-trash-alt"></i> Remover
+            </a>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <h1><i class="fas fa-list"></i> Lista de Contatos</h1>
+        
+        <div class="table-container">
+            <table id="tabelaContatos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+            <div class="no-contacts" id="semContatos" style="display: none;">
+                <i class="fas fa-address-book"></i>
+                <h3>Nenhum contato cadastrado</h3>
+                <p>Adicione seu primeiro contato clicando em "Novo"</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        async function carregarContatos() {
+            try {
+                const contatos = await listarContatos();
+                const tbody = document.querySelector('#tabelaContatos tbody');
+                const semContatos = document.getElementById('semContatos');
+                
+                tbody.innerHTML = '';
+                
+                if (contatos.length === 0) {
+                    semContatos.style.display = 'block';
+                    return;
+                }
+                
+                semContatos.style.display = 'none';
+                
+                contatos.forEach(contato => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${contato.nome}</td>
+                        <td>${formatarTelefone(contato.telefone)}</td>
+                        <td>${contato.email || '-'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+            } catch (error) {
+                console.error('Erro ao carregar contatos:', error);
+                const tbody = document.querySelector('#tabelaContatos tbody');
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: red;">Erro ao carregar contatos</td></tr>';
+            }
+        }
+        
+        function formatarTelefone(telefone) {
+            // Formatação simples: (XX) XXXXX-XXXX
+            const nums = telefone.replace(/\D/g, '');
+            if (nums.length === 11) {
+                return `(${nums.substring(0,2)}) ${nums.substring(2,7)}-${nums.substring(7)}`;
+            }
+            return telefone;
+        }
+        
+        // Carrega os contatos quando a página é aberta
+        document.addEventListener('DOMContentLoaded', carregarContatos);
+    </script>
+</body>
+</html>
