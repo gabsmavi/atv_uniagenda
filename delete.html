@@ -1,309 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Feito por: Anne Andrade -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Gabriel Viana">
-    <title>Adicionar Novo Contato | Agenda Digital</title>
-    
-    <!-- Ícones e Fontes -->
+    <title>Remover Contato | Agenda</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- SDK do Parse -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Parse SDK -->
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
-    
-    <style>
-        :root {
-            --azul-principal: #4361ee;
-            --azul-escuro: #3a56d4;
-            --fundo-claro: #f8f9fa;
-            --texto-escuro: #212529;
-            --sucesso: #4cc9f0;
-            --erro: #f72585;
-            --borda-arredondada: 8px;
-            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transicao: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: var(--fundo-claro);
-            color: var(--texto-escuro);
-            line-height: 1.6;
-            padding-top: 80px;
-        }
-        
-        /* Barra de Navegação */
-        .navegacao {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: var(--azul-principal);
-            padding: 1rem;
-            box-shadow: var(--sombra);
-            z-index: 1000;
-        }
-        
-        .menu {
-            display: flex;
-            gap: 1rem;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        .botao-nav {
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            transition: var(--transicao);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        
-        .botao-nav:hover {
-            background-color: var(--azul-escuro);
-            transform: translateY(-2px);
-        }
-        
-        /* Layout Principal */
-        .conteudo {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        /* Cartão do Formulário */
-        .cartao {
-            background: white;
-            border-radius: var(--borda-arredondada);
-            box-shadow: var(--sombra);
-            padding: 2rem;
-            animation: aparecer 0.5s ease-out;
-        }
-        
-        @keyframes aparecer {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        .titulo {
-            color: var(--azul-principal);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        
-        /* Estilos do Formulário */
-        .grupo-form {
-            margin-bottom: 1.5rem;
-        }
-        
-        .rotulo {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .campo {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: var(--borda-arredondada);
-            font-size: 1rem;
-            transition: var(--transicao);
-        }
-        
-        .campo:focus {
-            outline: none;
-            border-color: var(--azul-principal);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-        
-        .botao {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transicao);
-            width: 100%;
-            gap: 0.5rem;
-        }
-        
-        .botao-principal {
-            background-color: var(--azul-principal);
-            color: white;
-        }
-        
-        .botao-principal:hover {
-            background-color: var(--azul-escuro);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Ajustes para Mobile */
-        @media (max-width: 768px) {
-            .conteudo {
-                padding: 1rem;
-            }
-            
-            .menu {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .botao-nav {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Navegação -->
-    <nav class="navegacao">
-        <div class="menu">
-            <a href="index.html" class="botao-nav">
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">
                 <i class="fas fa-home"></i> Início
             </a>
-            <a href="list.html" class="botao-nav">
-                <i class="fas fa-list"></i> Contatos
+            <a href="add.html" class="nav-btn">
+                <i class="fas fa-plus"></i> Adicionar
             </a>
-            <a href="delete.html" class="botao-nav">
-                <i class="fas fa-trash-alt"></i> Remover
+            <a href="list.html" class="nav-btn">
+                <i class="fas fa-list"></i> Listar
             </a>
         </div>
     </nav>
 
     <!-- Conteúdo Principal -->
-    <main class="conteudo">
-        <div class="cartao">
-            <h1 class="titulo">
-                <i class="fas fa-user-plus"></i> Novo Contato
-            </h1>
-            
-            <form id="formContato">
-                <div class="grupo-form">
-                    <label for="nome" class="rotulo">
-                        <i class="fas fa-user"></i> Nome Completo
-                    </label>
-                    <input type="text" id="nome" class="campo" placeholder="Ex: João Silva" required>
-                </div>
-                
-                <div class="grupo-form">
-                    <label for="telefone" class="rotulo">
-                        <i class="fas fa-phone"></i> Telefone
-                    </label>
-                    <input type="tel" id="telefone" class="campo" placeholder="Ex: (11) 98765-4321" required>
-                </div>
-                
-                <div class="grupo-form">
-                    <label for="email" class="rotulo">
-                        <i class="fas fa-envelope"></i> E-mail (Opcional)
-                    </label>
-                    <input type="email" id="email" class="campo" placeholder="Ex: joao@exemplo.com">
-                </div>
-                
-                <button type="submit" class="botao botao-principal">
-                    <i class="fas fa-save"></i> Salvar Contato
+    <div class="container">
+        <h1><i class="fas fa-user-minus"></i> Remover Contato</h1>
+        
+        <div class="search-container">
+            <form id="formBusca" class="search-form">
+                <input type="text" id="busca" class="search-input" placeholder="Digite o nome ou ID do contato" required>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-search"></i> Buscar Contato
                 </button>
             </form>
         </div>
-    </main>
+        
+        <div class="results-container" id="resultados">
+            <div class="no-results" id="semResultados" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>Nenhum contato encontrado</h3>
+                <p>Busque por nome ou ID do contato que deseja remover</p>
+            </div>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
     <script>
-        // Configuração inicial do Parse
-        (function() {
-            Parse.initialize('MCU8RwP2QH3TCxcAZss2dpLgNgrLs5JAhz5xpCUr', 'l6bME5hu692HoAFtvhYcY5dFeR4WhlejV7ATBbn4');
-            Parse.serverURL = 'https://parseapi.back4app.com/';
-        })();
-
-        // Função para salvar contato
-        const salvarContato = async (dadosContato) => {
-            if (!dadosContato.nome || !dadosContato.telefone) {
-                throw new Error("Por favor, preencha pelo menos o nome e telefone");
-            }
-
-            try {
-                const Contato = Parse.Object.extend('Contato');
-                const novoContato = new Contato();
-                
-                novoContato.set('nome', dadosContato.nome.trim());
-                novoContato.set('telefone', dadosContato.telefone.trim());
-                novoContato.set('email', dadosContato.email?.trim() || null);
-                
-                return await novoContato.save();
-            } catch (erro) {
-                console.error('Erro ao salvar:', erro);
-                throw erro;
-            }
-        };
-
-        // Gerenciamento do formulário
-        document.addEventListener('DOMContentLoaded', () => {
-            const formulario = document.getElementById('formContato');
+        document.getElementById('formBusca').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const termo = document.getElementById('busca').value.trim();
+            const resultadosDiv = document.getElementById('resultados');
+            const semResultados = document.getElementById('semResultados');
             
-            formulario.addEventListener('submit', async (evento) => {
-                evento.preventDefault();
+            resultadosDiv.innerHTML = '<div class="loading-message"><i class="fas fa-spinner fa-spin"></i><p>Buscando contatos...</p></div>';
+            semResultados.style.display = 'none';
+            
+            try {
+                const contatos = await listarContatos();
+                const filtrados = contatos.filter(c => 
+                    c.nome.toLowerCase().includes(termo.toLowerCase()) || 
+                    c.objectId.includes(termo)
+                );
                 
-                const botao = evento.target.querySelector('button[type="submit"]');
-                const textoOriginal = botao.innerHTML;
+                resultadosDiv.innerHTML = '';
+                
+                if (filtrados.length === 0) {
+                    semResultados.style.display = 'block';
+                    return;
+                }
+                
+                filtrados.forEach(contato => {
+                    const card = document.createElement('div');
+                    card.className = 'contact-card';
+                    card.innerHTML = `
+                        <div class="contact-info">
+                            <p><strong>${contato.nome}</strong></p>
+                            <p>Telefone: ${contato.telefone}</p>
+                            <p>E-mail: ${contato.email || '-'}</p>
+                            <p class="contact-id">ID: ${contato.objectId}</p>
+                        </div>
+                        <button class="btn btn-danger" onclick="confirmarRemocao('${contato.objectId}')">
+                            <i class="fas fa-trash-alt"></i> Remover Contato
+                        </button>
+                    `;
+                    resultadosDiv.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar contatos:', error);
+                resultadosDiv.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i><p>Erro ao buscar contatos</p></div>';
+            }
+        });
+        
+        async function confirmarRemocao(id) {
+            if (confirm('Tem certeza que deseja remover este contato permanentemente?')) {
+                const btn = event.target.closest('button');
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Removendo...';
+                btn.disabled = true;
                 
                 try {
-                    // Atualiza visual do botão
-                    botao.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
-                    botao.disabled = true;
+                    const sucesso = await removerContato(id);
                     
-                    // Coleta dados
-                    const dados = {
-                        nome: document.getElementById('nome').value,
-                        telefone: document.getElementById('telefone').value,
-                        email: document.getElementById('email').value
-                    };
-                    
-                    // Salva contato
-                    await salvarContato(dados);
-                    
-                    // Feedback visual
-                    botao.innerHTML = '<i class="fas fa-check"></i> Salvo!';
-                    
-                    // Redireciona após 1 segundo
-                    setTimeout(() => {
-                        window.location.href = 'list.html';
-                    }, 1000);
-                    
-                } catch (erro) {
-                    console.error('Falha ao adicionar contato:', erro);
-                    botao.innerHTML = textoOriginal;
-                    botao.disabled = false;
-                    alert(`Ops! Não foi possível salvar: ${erro.message}`);
+                    if (sucesso) {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Removido!';
+                        setTimeout(() => {
+                            document.getElementById('formBusca').dispatchEvent(new Event('submit'));
+                        }, 1000);
+                    } else {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        alert('Erro ao remover contato.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao remover contato:', error);
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    alert('Erro ao remover contato.');
                 }
-            });
-        });
+            }
+        }
     </script>
 </body>
 </html>
